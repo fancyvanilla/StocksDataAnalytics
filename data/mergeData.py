@@ -39,7 +39,7 @@ with open("data/histo_cotation_2021.csv","w",newline='') as outfile:
 excel_files = ["histo_cotation_2022.xlsx","histo_cotation_2023.xlsx"]
 csv_files =["histo_cotation_2020.csv","histo_cotation_2021.csv"]
 cols=['SEANCE', 'GROUPE', 'CODE', 'VALEUR',
-       'OUVERTURE ', 'CLOTURE', 'PLUS_BAS', 'PLUS_HAUT',
+       'OUVERTURE', 'CLOTURE', 'PLUS_BAS', 'PLUS_HAUT',
        'QUANTITE_NEGOCIEE', 'NB_TRANSACTION', 'CAPITAUX']
 dfs=[]
 
