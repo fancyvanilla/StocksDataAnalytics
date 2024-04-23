@@ -3,10 +3,10 @@ import pandas as pd
 
 
 #convert text to csv 
-with open("histo_cotation_2020.txt","r") as f:
+with open("data/histo_cotation_2020.txt","r") as f:
     lines= f.readlines()
     
-with open("histo_cotation_2020.csv","w",newline='') as outfile:
+with open("data/histo_cotation_2020.csv","w",newline='') as outfile:
     writer = csv.writer(outfile)
     lines.pop(1)
 
@@ -15,10 +15,10 @@ with open("histo_cotation_2020.csv","w",newline='') as outfile:
         row =[x for x in row if x != '' and x != '\n']
         writer.writerow(row[:11])
 
-with open("histo_cotation_2021.txt","r") as f:
+with open("data/histo_cotation_2021.txt","r") as f:
     lines= f.readlines()
     
-with open("histo_cotation_2021.csv","w",newline='') as outfile:
+with open("data/histo_cotation_2021.csv","w",newline='') as outfile:
     writer = csv.writer(outfile)
     lines.pop(1)
 
@@ -37,11 +37,11 @@ cols=['SEANCE', 'GROUPE', 'CODE', 'VALEUR',
 dfs=[]
 
 for csv_file in csv_files:
-    df = pd.read_csv(csv_file)
+    df = pd.read_csv("data/"+csv_file)
     df.columns=cols
     dfs.append(df)
 for excel_file in excel_files:
-    df = pd.read_excel(excel_file, engine='openpyxl')
+    df = pd.read_excel("data/"+excel_file, engine='openpyxl')
     df.columns=cols
     dfs.append(df)
 
