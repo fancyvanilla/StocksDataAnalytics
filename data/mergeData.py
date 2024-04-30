@@ -15,11 +15,26 @@ with open("data/histo_cotation_2020.txt","r") as f:
     
 with open("data/histo_cotation_2020.csv","w",newline='') as outfile:
     writer = csv.writer(outfile)
-    lines.pop(1)
 
-    for line in lines[:-1]:
+    for line in lines[2:-1]:
         row= line.split(" ")
         row =[x for x in row if x != '' and x != '\n']
+        if len(row)<11:
+            print("nombre de colonnes <11")
+            print(row)
+            break
+        new_row=[]
+        value=[row[3]]
+        i=0    
+        while i<len(row):
+            if i!=3:
+              new_row.append(row[i])
+            else:
+                while(i<len(row)-2 and not row[i+1].replace(".","").isnumeric()):
+                    value.append(row[i+1])
+                    i+=1
+                new_row.append(" ".join(value))
+            i+=1
         writer.writerow(row[:11])
 
 with open("data/histo_cotation_2021.txt","r") as f:
@@ -27,11 +42,26 @@ with open("data/histo_cotation_2021.txt","r") as f:
     
 with open("data/histo_cotation_2021.csv","w",newline='') as outfile:
     writer = csv.writer(outfile)
-    lines.pop(1)
 
-    for line in lines[:-1]:
+    for line in lines[2:-1]:
         row= line.split(" ")
         row =[x for x in row if x != '' and x != '\n']
+        if len(row)<11:
+            print("nombre de colonnes <11")
+            print(row)
+            break
+        new_row=[]
+        value=[row[3]]
+        i=0    
+        while i<len(row):
+            if i!=3:
+              new_row.append(row[i])
+            else:
+                while(i<len(row)-2 and not row[i+1].replace(".","").isnumeric()):
+                    value.append(row[i+1])
+                    i+=1
+                new_row.append(" ".join(value))
+            i+=1
         writer.writerow(row[:11])
 
 #install openpyxl if not installed
