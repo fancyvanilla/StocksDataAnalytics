@@ -1,10 +1,8 @@
 import csv
 import pandas as pd
 
-
-
 def convert_date(date_str):
-    date = date_str.split('/')
+    date = str(date_str).split('/')
     if len(date)==3:
       return f"{date[2]}-{date[1]}-{date[0]}"
     return ""
@@ -19,23 +17,19 @@ with open("data/histo_cotation_2020.csv","w",newline='') as outfile:
     for line in lines[2:-1]:
         row= line.split(" ")
         row =[x for x in row if x != '' and x != '\n']
-        if len(row)<11:
-            print("nombre de colonnes <11")
-            print(row)
-            break
-        new_row=[]
-        value=[row[3]]
-        i=0    
-        while i<len(row):
-            if i!=3:
-              new_row.append(row[i])
-            else:
-                while(i<len(row)-2 and not row[i+1].replace(".","").isnumeric()):
-                    value.append(row[i+1])
-                    i+=1
-                new_row.append(" ".join(value))
-            i+=1
-        writer.writerow(row[:11])
+        newRow=[]
+        startIndex=7
+        lastCol=row[-1]
+        if len(lastCol)==1:
+            startIndex=8
+        lastCols=row[::-1][ startIndex-7:startIndex ]
+        restCols=row[::-1][startIndex:]
+        firstCols=restCols[::-1][:3]
+        valuecol=" ".join(restCols[::-1][3:])
+        newRow.extend(firstCols)
+        newRow.append(valuecol)
+        newRow.extend(lastCols)
+        writer.writerow(newRow)
 
 with open("data/histo_cotation_2021.txt","r") as f:
     lines= f.readlines()
@@ -46,23 +40,15 @@ with open("data/histo_cotation_2021.csv","w",newline='') as outfile:
     for line in lines[2:-1]:
         row= line.split(" ")
         row =[x for x in row if x != '' and x != '\n']
-        if len(row)<11:
-            print("nombre de colonnes <11")
-            print(row)
-            break
-        new_row=[]
-        value=[row[3]]
-        i=0    
-        while i<len(row):
-            if i!=3:
-              new_row.append(row[i])
-            else:
-                while(i<len(row)-2 and not row[i+1].replace(".","").isnumeric()):
-                    value.append(row[i+1])
-                    i+=1
-                new_row.append(" ".join(value))
-            i+=1
-        writer.writerow(row[:11])
+        newRow=[]
+        lastCols=row[::-1][0:7]
+        restCols=row[::-1][7:]
+        firstCols=restCols[::-1][:3]
+        valuecol=" ".join(restCols[::-1][3:])
+        newRow.extend(firstCols)
+        newRow.append(valuecol)
+        newRow.extend(lastCols)
+        writer.writerow(newRow)
 
 #install openpyxl if not installed
 #merge the csv files   
