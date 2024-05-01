@@ -1,5 +1,5 @@
 # StocksDataAnalytics
-When working with data, we need to first understand it and prepare it for processing. Then, utilizing Hadoop and MapReduce, we're going to extract further insights. Finally, we will analyze the results and employ Python libraries for visualization.
+When working with data, it's essential to first understand and prepare it for processing. Next, leveraging Hadoop and MapReduce, we'll extract additional insights. Additionally, we'll analyze the results using tools like Hive and Pig. Finally, we'll present everything in a dashboard. Stay tuned!
 
 ## Data
 
