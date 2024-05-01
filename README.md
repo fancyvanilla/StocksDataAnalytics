@@ -1,5 +1,5 @@
 # StocksDataAnalytics
-Using Hadoop and Python, we analyze Tunisian stock market data to deduce insights.
+When working with data, we need to first understand it and prepare it for processing. Then, utilizing Hadoop and MapReduce, we're going to extract further insights. Finally, we will analyze the results and employ Python libraries for visualization.
 
 ## Data
 
